@@ -30,17 +30,14 @@ class Solution:
         if t_len != s_len:
             return False
 
-        for i in range(s_len):
-            s_map[s[i]] = s_map.get(s[i], 0) + 1
+        for char in s:
+            s_map[char] = s_map.get(char, 0) + 1
         
-        for i in range(t_len):
-            currEl = t[i]
-            count = s_map.get(currEl, 0)
-
-            if count == 0:
+        for char in t:
+            if s_map.get(char, 0) == 0:
                 return False
             
-            s_map[currEl] = s_map[currEl] - 1
+            s_map[char] -= 1
         
         return True
 
@@ -51,4 +48,4 @@ print(s.isAnagram("anagramb", "nagaramc"))
 print(s.isAnagram("rat", "car"))
 
 # Time complexity: O(n)
-# Space complexity: O(1)
+# Space complexity: O(k)

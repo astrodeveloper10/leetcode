@@ -22,20 +22,15 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 """
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s_len = len(s)
-        t_len = len(t)
-        s_map = {}
-        t_map = {}
-
-        # Check if the given strings have the same length
-        if t_len != s_len:
+        # anagrams must have the same length
+        # If lengths differ, no need to sort — return early
+        if len(s) != len(t):
             return False
 
-        for i in range(t_len):
-            s_map[s[i]] = s_map.get(s[i], 0) + 1
-            t_map[t[i]] = t_map.get(t[i], 0) + 1
-        
-        return s_map == t_map
+        # Sort both strings alphabetically.
+        # Two strings are anagrams if and only if
+        # their sorted forms are identical.
+        return sorted(s) == sorted(t)
 
 
 s = Solution()
@@ -43,5 +38,5 @@ print(s.isAnagram("anagram", "nagaram"))
 print(s.isAnagram("anagramb", "nagaramc"))
 print(s.isAnagram("rat", "car"))
 
-# Time complexity: O(n)
-# Space complexity: O(1)
+# Time complexity: O(nlogn)
+# Space complexity: O(n)
