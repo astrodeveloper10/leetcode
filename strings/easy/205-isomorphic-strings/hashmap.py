@@ -43,22 +43,22 @@ class Solution:
         if s_len != t_len:
             return False
         
-        s_map = {}
-        t_map = {}
+        mapping_s_t = {}
+        mapping_t_s = {}
 
         for i in range(s_len):
             s_char = s[i]
             t_char = t[i]
 
-            # If s[i] is in s_map and its value is not equal to the current t[i], then we have a character being mapped to two values
+            # If s[i] is in mapping_s_t and its value is not equal to the current t[i], then we have a character being mapped to two values
             # If t[i] is in t_map and its value is not equal to the current s[i], then we have a character being mapped to two values
             # We cannot have a character, that is mapped to two values
-            if (s_char in s_map and s_map[s_char] != t_char) or (
-                t_char in t_map and t_map[t_char] != s_char):
+            if (s_char in mapping_s_t and mapping_s_t[s_char] != t_char) or (
+                t_char in mapping_t_s and mapping_t_s[t_char] != s_char):
                 return False
             
-            s_map[s_char] = t_char
-            t_map[t_char] = s_char
+            mapping_s_t[s_char] = t_char
+            mapping_t_s[t_char] = s_char
 
         return True
 
