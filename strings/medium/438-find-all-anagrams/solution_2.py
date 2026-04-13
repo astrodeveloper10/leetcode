@@ -32,19 +32,25 @@ class Solution:
         if size_p > size_s:
             return []
         
+        # Build the hash map for "p"
         counter_p = Counter(p)
         counter_s = Counter()
         result = []
 
+        # Traverse the string "s" to build the hash map
         for i in range(size_s):
             counter_s[s[i]] = counter_s.get(s[i], 0) + 1
 
+            # If i is greater than or equal to size of p
+            # Then we need to delete the left most character
+            # or decrement the left most character by 1 from the hashmap
             if i >= size_p:
                 if counter_s[s[i - size_p]] == 1:
                     del counter_s[s[i - size_p]]
                 else:
                     counter_s[s[i - size_p]] -= 1
             
+            # If the hashmaps match, then add the index to result
             if counter_s == counter_p:
                 result.append(i - size_p + 1)
         
