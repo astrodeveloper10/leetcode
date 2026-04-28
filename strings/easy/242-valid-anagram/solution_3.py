@@ -22,18 +22,27 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 """
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        def char_count(s):
-            count = {}
+        size_s = len(s)
+        size_t = len(t)
 
-            for ch in s:
-                if ch not in count:
-                    count[ch] = 0
-                
-                count[ch] += 1
-            
-            return count
+        if size_s != size_t:
+            return False
         
-        return char_count(s) == char_count(t)
+        counter_s = {}
+
+        for ch in s:
+            counter_s[ch] = counter_s.get(ch, 0) + 1
+        
+        for ch in t:
+            # If the character is not in counter_s then they are not anagrams
+            # If the frequency of the character is 0, it means that "t"
+            # contains the character more number of times than "s"
+            if ch not in counter_s or counter_s[ch] == 0:
+                return False
+
+            counter_s[ch] -= 1
+        
+        return True
 
 
 s = Solution()
