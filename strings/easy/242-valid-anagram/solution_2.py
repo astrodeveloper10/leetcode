@@ -22,24 +22,18 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 """
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s_len = len(s)
-        t_len = len(t)
-        s_map = {}
+        def char_count(s):
+            count = {}
 
-        # Check if the given strings have the same length
-        if t_len != s_len:
-            return False
-
-        for char in s:
-            s_map[char] = s_map.get(char, 0) + 1
-        
-        for char in t:
-            if s_map.get(char, 0) == 0:
-                return False
+            for ch in s:
+                if ch not in count:
+                    count[ch] = 0
+                
+                count[ch] += 1
             
-            s_map[char] -= 1
+            return count
         
-        return True
+        return char_count(s) == char_count(t)
 
 
 s = Solution()
@@ -47,5 +41,5 @@ print(s.isAnagram("anagram", "nagaram"))
 print(s.isAnagram("anagramb", "nagaramc"))
 print(s.isAnagram("rat", "car"))
 
-# Time complexity: O(n)
-# Space complexity: O(k)
+# Time complexity: O(n + m)
+# Space complexity: O(n + m)
