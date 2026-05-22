@@ -32,20 +32,19 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        map = {}
+        seen = {}
 
         for index, num in enumerate(nums):
-            # Calculate the diff
-            # remove the current num from the target sum
-            diff = target - num
+            # Calculate the complement
+            complement = target - num
 
-            # Check if diff is present in the map
-            # If yes, then return the current index and the index of diff (fetch it from the map)
-            if diff in map:
-                return [map[diff], index]
+            # Check if complement exists in the hashmap
+            # If yes, then return the current index and the index of complement
+            if complement in seen:
+                return [seen[complement], index]
 
-            # Add the current num and its index to the map
-            map[num] = index
+            # Add the current num and its index to the hashmap
+            seen[num] = index
 
         return []
 
