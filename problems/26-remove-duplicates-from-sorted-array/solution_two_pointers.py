@@ -1,13 +1,13 @@
 """
-Given an integer array nums sorted in non-decreasing order, remove the duplicates 
-in-place such that each unique element appears only once. 
+Given an integer array nums sorted in non-decreasing order, remove the duplicates
+in-place such that each unique element appears only once.
 
 The relative order of the elements should be kept the same.
 
 Consider the number of unique elements in nums to be k.
 After removing duplicates, return the number of unique elements k.
 
-The first k elements of nums should contain the unique numbers in sorted order. 
+The first k elements of nums should contain the unique numbers in sorted order.
 The remaining elements beyond index k - 1 can be ignored.
 
 Custom Judge:
@@ -42,18 +42,25 @@ Constraints:
 -100 <= nums[i] <= 100
 nums is sorted in non-decreasing order.
 """
+
+
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums: list[int]) -> int:
+        # Pointer marking the end of the unique elements section
         slow = 0
         n = len(nums)
 
+        # Traverse the list starting from index 1
         for fast in range(1, n):
+            # When we find a value different from nums[slow]
             if nums[fast] != nums[slow]:
+                # Move slow pointer forward
                 slow += 1
+                # Place the new unique value at slow's position 
                 nums[slow] = nums[fast]
-        
+
         return slow + 1
 
 
 s = Solution()
-print(s.removeDuplicates([1,1,2]))
+print(s.removeDuplicates([1, 1, 2]))
