@@ -34,15 +34,11 @@ class Solution:
     def max_profit(self, prices: list[int]) -> int:
         n = len(prices)
         max_diff = 0
-        max_price = max(prices)
 
         for i in range(n):
-            if prices[i] != max_price:
-                for j in range(i+1, n):
-                    if prices[i] == prices[j]:
-                        continue
-                    elif prices[i] < prices[j]:
-                        max_diff = max(max_diff, prices[j] - prices[i])
+            for j in range(i+1, n):
+                if prices[i] < prices[j]:
+                    max_diff = max(max_diff, prices[j] - prices[i])
 
         return max_diff
 
